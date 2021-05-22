@@ -272,6 +272,7 @@ static int linuxgpio_open(PROGRAMMER *pgm, char *port)
                     pin, strerror(errno));
             return r;
         }
+        usleep(100000); // Work around for this issue: raspberrypi/linux#553
         if (i == PIN_AVR_MISO)
             r=linuxgpio_dir_in(pin);
         else
